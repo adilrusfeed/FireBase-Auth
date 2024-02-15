@@ -1,3 +1,4 @@
+import 'package:ecommerce/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -5,8 +6,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.yellow,
-    );
+    return Scaffold(
+        backgroundColor: Colors.yellow,
+        appBar: AppBar(
+          title: Text('Home'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LoginPage()));
+                },
+                icon: const Icon(
+                  Icons.logout,
+                ))
+          ],
+        ));
   }
 }

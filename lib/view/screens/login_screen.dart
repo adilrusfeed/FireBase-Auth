@@ -240,8 +240,8 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text;
     User? user = await signInServices.signInWithEmail(email, password, context);
     if (user != null) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomePage()));
     } else {
       print('there is some error ');
     }

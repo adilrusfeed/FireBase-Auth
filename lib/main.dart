@@ -1,7 +1,7 @@
 import 'package:ecommerce/controller/auth_provider.dart';
 import 'package:ecommerce/controller/otp_provider.dart';
 import 'package:ecommerce/firebase_options.dart';
-import 'package:ecommerce/view/screens/login_screen.dart';
+import 'package:ecommerce/view/widgets/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const LoginPage()),
+          home: const AuthGate()),
     );
   }
 }
