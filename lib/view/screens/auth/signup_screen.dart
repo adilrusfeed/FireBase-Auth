@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, unnecessary_null_comparison
 
 import 'package:ecommerce/service/auth_services.dart';
 import 'package:ecommerce/view/screens/auth/login_screen.dart';

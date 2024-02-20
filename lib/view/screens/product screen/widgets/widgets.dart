@@ -2,7 +2,6 @@ import 'package:ecommerce/controller/image_provider.dart';
 import 'package:ecommerce/view/widgets/text_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class ProductWidgets {
   showImagePickerBottomSheet(context, imageProviders value) {

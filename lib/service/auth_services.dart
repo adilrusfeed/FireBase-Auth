@@ -36,6 +36,7 @@ class FirebaseAuthServices {
           SetOptions(merge: true));
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
+      // ignore: unused_local_variable
       String errorcode = "error singIn";
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         errorcode = "Icorrect email or password";

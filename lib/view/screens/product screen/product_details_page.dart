@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
 import 'package:ecommerce/controller/home_provider.dart';
 import 'package:ecommerce/model/item_model.dart';
 import 'package:ecommerce/view/screens/cart_screen.dart';
@@ -77,7 +77,7 @@ class ProductDetailsPage extends StatelessWidget {
                             color: Colors.red,
                             onPressed: () async {
                               final value = await wishListCheck(products!);
-                              provider.IsWishLIstClick(products!.id, value);
+                              provider.isWishLIstClick(products!.id, value);
                             },
                           );
                         })

@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/model/item_model.dart';
@@ -67,8 +66,8 @@ class HomeProvider extends ChangeNotifier {
     getAllProducts();
   }
 
-  IsWishLIstClick(id, bool wishListStatus) async {
-    await databaseService.IsWishListClick(id, wishListStatus);
+  isWishLIstClick(id, bool wishListStatus) async {
+    await databaseService.isWishListClick(id, wishListStatus);
     notifyListeners();
     getAllProducts();
   }

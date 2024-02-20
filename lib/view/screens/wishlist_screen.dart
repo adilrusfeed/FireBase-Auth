@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecommerce/controller/home_provider.dart';
 import 'package:ecommerce/model/item_model.dart';
 import 'package:ecommerce/view/screens/product%20screen/product_details_page.dart';
@@ -34,7 +36,7 @@ class WishlistPage extends StatelessWidget {
                                 ActionPane(motion: ScrollMotion(), children: [
                               SlidableAction(
                                 onPressed: (context) async {
-                                  await provider.IsWishLIstClick(
+                                  await provider.isWishLIstClick(
                                       product.id, false);
                                 },
                                 backgroundColor: Color(0xFFFE4A49),

@@ -117,7 +117,7 @@ class HomeWidgets {
                 color: Colors.red,
                 onPressed: () async {
                   final value = await wishListCheck(product);
-                  provider.IsWishLIstClick(product.id, value);
+                  provider.isWishLIstClick(product.id, value);
                 },
               ),
             ),

@@ -16,36 +16,19 @@ class DrawerHeaderWidget extends StatelessWidget {
         children: [
           Text(auth.auth.currentUser!.email ?? '',
               style: GoogleFonts.montserrat(
-                color: const Color.fromARGB(255, 0, 0, 0),
-                fontSize: 12,
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 16,
               )),
-          SizedBox(
-              // height: 150,
-              // child: Lottie.asset("assets/phone.jpg"),
-
-              // Lottie.asset(
-              //   'assets/phone.jpg',
-              //   width: 250,
-              // ),
-              ),
           SizedBox(
             height: 25,
           ),
           GestureDetector(
-            onTap: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => AboutScreen(),
-              // ));
-            },
+            onTap: () {},
             child: DrawerItem(text: "About", icon: Icons.info),
           ),
           Divider(),
           GestureDetector(
-            onTap: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) => TermsScreen(),
-              // ));
-            },
+            onTap: () {},
             child: DrawerItem(
               text: "Terms and Conditions",
               icon: Icons.document_scanner_rounded,
