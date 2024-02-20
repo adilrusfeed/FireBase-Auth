@@ -1,5 +1,6 @@
 import 'package:ecommerce/view/screens/home_screen.dart';
-import 'package:ecommerce/view/screens/login_screen.dart';
+import 'package:ecommerce/view/screens/auth/login_screen.dart';
+import 'package:ecommerce/view/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _AuthGateState extends State<AuthGate> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const HomePage();
+              return const BottomNavigation();
             } else {
               return const LoginPage();
             }

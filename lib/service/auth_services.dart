@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/model/user_model.dart';
-import 'package:ecommerce/view/widgets/customer_alert.dart';
+import 'package:ecommerce/view/widgets/login/customer_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -44,8 +44,8 @@ class FirebaseAuthServices {
       } else {
         errorcode = e.code;
       }
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(errorcode)));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text(errorcode)));
       return null;
     }
   }

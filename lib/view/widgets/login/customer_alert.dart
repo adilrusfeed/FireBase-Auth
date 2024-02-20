@@ -1,6 +1,7 @@
 import 'package:ecommerce/controller/otp_provider.dart';
 import 'package:ecommerce/service/auth_services.dart';
 import 'package:ecommerce/view/screens/home_screen.dart';
+import 'package:ecommerce/view/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -81,7 +82,7 @@ class CustomAlertDialog extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                builder: (context) => const BottomNavigation(),
               ));
         });
   }

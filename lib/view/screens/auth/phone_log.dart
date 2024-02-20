@@ -1,6 +1,6 @@
 import 'package:ecommerce/service/auth_services.dart';
-import 'package:ecommerce/view/screens/login_screen.dart';
-import 'package:ecommerce/view/widgets/phone_field.dart';
+import 'package:ecommerce/view/screens/auth/login_screen.dart';
+import 'package:ecommerce/view/widgets/login/phone_field.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

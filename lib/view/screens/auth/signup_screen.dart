@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:ecommerce/service/auth_services.dart';
-import 'package:ecommerce/view/screens/login_screen.dart';
+import 'package:ecommerce/view/screens/auth/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

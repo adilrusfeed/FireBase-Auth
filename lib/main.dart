@@ -1,7 +1,10 @@
 import 'package:ecommerce/controller/auth_provider.dart';
+import 'package:ecommerce/controller/bottom_provider.dart';
+import 'package:ecommerce/controller/home_provider.dart';
+import 'package:ecommerce/controller/image_provider.dart';
 import 'package:ecommerce/controller/otp_provider.dart';
 import 'package:ecommerce/firebase_options.dart';
-import 'package:ecommerce/view/widgets/auth_gate.dart';
+import 'package:ecommerce/view/widgets/login/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProviders()),
         ChangeNotifierProvider(create: (context) => OtpProvider()),
-        // ChangeNotifierProvider(create: (context) => SplashProvider()),
+        ChangeNotifierProvider(create: (context) => BottomBarProvider()),
+        ChangeNotifierProvider(create: (context) => HomeProvider()),
+        ChangeNotifierProvider(create: (context) => imageProviders()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

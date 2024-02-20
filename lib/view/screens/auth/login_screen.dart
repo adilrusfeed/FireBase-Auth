@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:ecommerce/controller/auth_provider.dart';
-import 'package:ecommerce/view/screens/home_screen.dart';
-import 'package:ecommerce/view/screens/phone_log.dart';
-import 'package:ecommerce/view/screens/signup_screen.dart';
+import 'package:ecommerce/view/screens/auth/phone_log.dart';
+import 'package:ecommerce/view/screens/auth/signup_screen.dart';
+import 'package:ecommerce/view/widgets/bottom_bar.dart';
 import 'package:ecommerce/view/widgets/curve_ui.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -241,9 +243,9 @@ class _LoginPageState extends State<LoginPage> {
     User? user = await signInServices.signInWithEmail(email, password, context);
     if (user != null) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
+          MaterialPageRoute(builder: (context) => BottomNavigation()));
     } else {
-      print('there is some error ');
+      log('there is some error');
     }
   }
 }
