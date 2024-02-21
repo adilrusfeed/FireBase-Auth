@@ -1,7 +1,3 @@
-// ignore_for_file: unused_local_variable
-
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/model/user_model.dart';
 import 'package:ecommerce/view/widgets/login/customer_alert.dart';
@@ -40,6 +36,7 @@ class FirebaseAuthServices {
           SetOptions(merge: true));
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
+      // ignore: unused_local_variable
       String errorcode = "error singIn";
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         errorcode = "Icorrect email or password";
@@ -48,7 +45,8 @@ class FirebaseAuthServices {
       } else {
         errorcode = e.code;
       }
-
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(errorcode)));
       return null;
     }
   }
@@ -138,7 +136,6 @@ class FirebaseAuthServices {
       firestore.collection("users").doc(gituser.uid).set(userdata.toJson());
       return user;
     } catch (e) {
-      log('something error');
       throw Exception(e);
     }
   }
@@ -150,7 +147,7 @@ class FirebaseAuthServices {
       await auth.signOut();
       await google.signOut();
     } catch (e) {
-      log("this is the error r$e");
+      print("this is the error r$e");
     }
   }
 }
