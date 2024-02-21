@@ -112,11 +112,11 @@ class HomeWidgets {
                 context,
                 size,
                 iconData: wishListCheck(product)
-                    ? Icons.heart_broken
-                    : Icons.heart_broken,
+                    ? Icons.heart_broken_outlined
+                    : Icons.heart_broken_sharp,
                 color: Colors.red,
                 onPressed: () async {
-                  final value = await wishListCheck(product);
+                  final value = wishListCheck(product);
                   provider.isWishLIstClick(product.id, value);
                 },
               ),

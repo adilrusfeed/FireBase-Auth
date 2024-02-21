@@ -39,6 +39,15 @@ class HomeProvider extends ChangeNotifier {
   }
 
   List<String> cartList = [];
+  int getCartTotal() {
+    int total = 0;
+    for (var productId in cartList) {
+      var product = allProduct.firstWhere((element) => element.id == productId);
+      total += product.price ?? 0;
+    }
+    return total;
+  }
+
   setIsInCart(String productId, bool isInCart) {
     if (isInCart) {
       cartList.add(productId); // Add product to cart
@@ -51,8 +60,9 @@ class HomeProvider extends ChangeNotifier {
   addToCart(String productId) {
     if (!cartList.contains(productId)) {
       cartList.add(productId); // Add product to cart
+
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   removeFromCart(String productId) {

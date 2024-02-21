@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
 import 'package:ecommerce/controller/home_provider.dart';
 import 'package:ecommerce/model/item_model.dart';
-import 'package:ecommerce/view/screens/cart_screen.dart';
 import 'package:ecommerce/view/widgets/appbar_widget.dart';
 import 'package:ecommerce/view/widgets/button_widget.dart';
 import 'package:ecommerce/view/widgets/icon_widget.dart';
@@ -19,7 +18,7 @@ class ProductDetailsPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBarWidgets().appBar(context,
-          title: '',
+          title: "Shopify",
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black),
       body: SizedBox(
@@ -76,7 +75,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 : Icons.heart_broken_outlined,
                             color: Colors.red,
                             onPressed: () async {
-                              final value = await wishListCheck(products!);
+                              final value = wishListCheck(products!);
                               provider.isWishLIstClick(products!.id, value);
                             },
                           );
@@ -133,11 +132,24 @@ class ProductDetailsPage extends StatelessWidget {
                       onPressed: () {
                         Provider.of<HomeProvider>(context, listen: false)
                             .addToCart(products!.id!);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CartPage(),
-                            ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: SizedBox(
+                              height: 60, // Adjust the height as needed
+                              child: Center(
+                                child: Text(
+                                  'Added to Cart',
+                                  style: TextStyle(
+                                      fontSize:
+                                          16), // Adjust the font size as needed
+                                ),
+                              ),
+                            ),
+                            duration: Duration(seconds: 2),
+                            backgroundColor:
+                                Colors.green, // Adjust the duration as needed
+                          ),
+                        );
                       },
                     ),
                   )),

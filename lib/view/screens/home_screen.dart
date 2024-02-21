@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/controller/home_provider.dart';
 import 'package:ecommerce/view/screens/wishlist_screen.dart';
 import 'package:ecommerce/view/widgets/home_widget.dart';
@@ -26,9 +27,9 @@ class _HomeTabState extends State<HomeScreen> {
   }
 
   final List<String> specialProduct = [
-    'assets/offer 1.jpg',
-    'assets/offer 2.jpg',
-    'assets/offer 3.jpg'
+    'assets/offer0.jpg',
+    'assets/offerdiwali.jpg',
+    'assets/offer20.png'
   ];
 
   final List<String> catorgoryName = [
@@ -41,13 +42,13 @@ class _HomeTabState extends State<HomeScreen> {
     'Speaker',
   ];
   final List<String> catorgoryItems = [
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Tablets._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Gaming-laptops._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Wearables._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Headphones._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Cameras._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Computer-Accessories._CB574550011_.png',
-    'https://m.media-amazon.com/images/G/31/img23/CEPC/BAU/ELP/navtiles/Soundbars._CB574550011_.png'
+    'https://w0.peakpx.com/wallpaper/110/397/HD-wallpaper-xiaomi-android-mobile-phone-2019.jpg',
+    'https://img.lovepik.com/element/45012/8521.png_860.png',
+    'https://5.imimg.com/data5/SELLER/Default/2020/11/CS/FW/VL/15119067/41crkwnji4l.jpg',
+    'https://img.freepik.com/free-photo/pink-headphones-wireless-digital-device_53876-96804.jpg',
+    'https://t3.ftcdn.net/jpg/00/52/45/32/360_F_52453293_qGCRFdf6nEkCLjBuRIHQIQMOOaYmgNpN.jpg',
+    'https://www.pngitem.com/pimgs/b/23-230878_accessories-for-the-computer-have-them-now-best.png',
+    'https://m.media-amazon.com/images/I/61CorIpO46S._AC_UF1000,1000_QL80_.jpg'
   ];
 
   @override
@@ -140,22 +141,38 @@ class _HomeTabState extends State<HomeScreen> {
                   ),
                 ),
                 TextWidgets().mainHeadingText(context, text: 'Sponsered  '),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      specialProduct.length,
-                      (index) => Padding(
-                        padding: EdgeInsets.only(
-                          right: 8,
-                        ),
-                        child: HomeWidgets().specialProduct(
-                          size,
-                          imagePath: specialProduct[index],
-                        ),
-                      ),
-                    ),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: size.width * 0.4,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
                   ),
+                  items: specialProduct.map((imagePath) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: Image.asset(
+                            imagePath,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
                 ),
                 TextWidgets().mainHeadingText(context, text: 'Products  '),
                 Consumer<HomeProvider>(builder: (context, provider, child) {

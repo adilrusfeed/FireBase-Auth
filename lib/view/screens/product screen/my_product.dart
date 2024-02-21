@@ -2,10 +2,12 @@ import 'package:ecommerce/controller/home_provider.dart';
 import 'package:ecommerce/model/item_model.dart';
 import 'package:ecommerce/view/screens/product%20screen/sell_product.dart';
 import 'package:ecommerce/view/widgets/appbar_widget.dart';
+import 'package:ecommerce/view/widgets/button_widget.dart';
 import 'package:ecommerce/view/widgets/icon_widget.dart';
 import 'package:ecommerce/view/widgets/text_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -23,108 +25,130 @@ class MyProductPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            Consumer<HomeProvider>(
-              builder: (context, provider, _) {
-                final List<ProductModel> myProducts =
-                    filteringMyProduct(provider);
-                return myProducts.isNotEmpty
-                    ? Expanded(
-                        child: ListView.separated(
-                          itemCount: myProducts.length,
-                          separatorBuilder: (context, index) => const Divider(),
-                          itemBuilder: (context, index) {
-                            final product = myProducts[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Consumer<HomeProvider>(
+                  builder: (context, provider, _) {
+                    final List<ProductModel> myProducts =
+                        filteringMyProduct(provider);
+                    return myProducts.isNotEmpty
+                        ? Expanded(
+                            child: ListView.separated(
+                              itemCount: myProducts.length,
+                              separatorBuilder: (context, index) =>
+                                  const Divider(),
+                              itemBuilder: (context, index) {
+                                final product = myProducts[index];
+                                return Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        height: size.width * .2,
-                                        width: size.width * .2,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    product.image.toString()),
-                                                fit: BoxFit.cover),
-                                            color: Colors.grey,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
-                                      ),
-                                      SizedBox(
-                                        width: size.width * .02,
-                                      ),
-                                      Column(
+                                      Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          TextWidgets().titleText2(context,
-                                              text: product.title.toString()),
-                                          TextWidgets().subtitleText(context,
-                                              text:
-                                                  product.category.toString()),
-                                          Row(
+                                          Container(
+                                            height: size.width * .2,
+                                            width: size.width * .2,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(product
+                                                        .image
+                                                        .toString()),
+                                                    fit: BoxFit.cover),
+                                                color: Colors.grey,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(15))),
+                                          ),
+                                          SizedBox(
+                                            width: size.width * .02,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               TextWidgets().titleText2(context,
                                                   text:
-                                                      product.price.toString()),
-                                              SizedBox(
-                                                width: size.width * .04,
-                                              ),
+                                                      product.title.toString()),
                                               TextWidgets().subtitleText(
                                                   context,
-                                                  text: '/Sold',
-                                                  color: Colors.green),
+                                                  text: product.category
+                                                      .toString()),
+                                              Row(
+                                                children: [
+                                                  TextWidgets().titleText2(
+                                                      context,
+                                                      text: product.price
+                                                          .toString()),
+                                                  SizedBox(
+                                                    width: size.width * .04,
+                                                  ),
+                                                  TextWidgets().subtitleText(
+                                                      context,
+                                                      text: '/Sold',
+                                                      color: Colors.green),
+                                                ],
+                                              ),
                                             ],
                                           ),
                                         ],
                                       ),
+                                      IconsWidgets().IconButtonWidget(
+                                          context, size, onPressed: () async {
+                                        await provider
+                                            .deleteMyProduct(product.id);
+                                      }, iconData: Icons.delete),
                                     ],
                                   ),
-                                  IconsWidgets().IconButtonWidget(context, size,
-                                      onPressed: () async {
-                                    await provider.deleteMyProduct(product.id);
-                                  }, iconData: Icons.delete),
-                                ],
+                                );
+                              },
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              Center(
+                                child: Lottie.asset(
+                                    width: size.width * .20,
+                                    height: size.width * .20,
+                                    'assets/lottie.json'),
                               ),
-                            );
-                          },
-                        ),
-                      )
-                    : Center(
-                        child: Lottie.asset(
-                            width: size.width * .20,
-                            height: size.width * .20,
-                            'assets/lottie.json'),
-                      );
-              },
+                              const Text("add products ")
+                            ],
+                          );
+                  },
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: Colors.transparent,
+                child: ButtonWidgets().fullWidthElevatedButton(
+                  size,
+                  label: 'Add Product',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) {
+                          return SellProductPage();
+                        }),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          elevation: 0,
-          backgroundColor: const Color.fromARGB(255, 37, 157, 192),
-          onPressed: () {
-            // showModalBottomSheet(
-            //   context: context,
-            //   builder: (context) => SellProductPage(),
-            // );
-            Navigator.push(context, MaterialPageRoute(builder: ((context) {
-              return SellProductPage();
-            })));
-          },
-          child: IconsWidgets().IconButtonWidget(context, size,
-              color: Colors.white, iconData: Icons.add_outlined)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

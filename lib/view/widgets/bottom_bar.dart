@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, override_on_non_overriding_member
 
 import 'package:ecommerce/controller/bottom_provider.dart';
 import 'package:ecommerce/view/screens/cart_screen.dart';

@@ -1,6 +1,5 @@
-import 'package:ecommerce/controller/otp_provider.dart';
+import 'package:ecommerce/controller/auth_provider.dart';
 import 'package:ecommerce/service/auth_services.dart';
-import 'package:ecommerce/view/screens/home_screen.dart';
 import 'package:ecommerce/view/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,11 +19,6 @@ class CustomAlertDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: const Color.fromARGB(255, 138, 138, 138),
       actions: [
-        // CustomTextField(
-        //   controller: otpcontroller,
-        //   hinttext: "OTP",
-        //   fillcolor: const Color.fromRGBO(43, 40, 53, 1),
-        // ),
         const SizedBox(
           height: 50,
         ),
@@ -40,14 +34,15 @@ class CustomAlertDialog extends StatelessWidget {
                     color: const Color.fromARGB(255, 255, 255, 255))),
           ),
           onChanged: (value) {
-            Provider.of<OtpProvider>(context, listen: false).otpSetter(value);
+            Provider.of<AuthProviders>(context, listen: false).otpSetter(value);
           },
         ),
         const SizedBox(height: 20),
         GestureDetector(
           onTap: () {
             String userotp =
-                Provider.of<OtpProvider>(context, listen: false).otpcode ?? "";
+                Provider.of<AuthProviders>(context, listen: false).otpcode ??
+                    "";
             verifyOtp(context, userotp);
           },
           child: Container(

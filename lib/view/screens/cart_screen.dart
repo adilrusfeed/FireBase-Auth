@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors, unused_local_variable
+
+import 'package:ecommerce/view/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +15,10 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cart'),
-      ),
+      appBar: AppBarWidgets().appBar(context,
+          title: "Cart",
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black),
       body: Consumer<HomeProvider>(
         builder: (context, provider, child) {
           final List<ProductModel> cartProducts =
@@ -64,20 +68,46 @@ class CartPage extends StatelessWidget {
                 );
         },
       ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 8,
+        child: Container(
+          height: 80,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              Text(
+                '₹ ${Provider.of<HomeProvider>(context).getCartTotal()}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
+}
 
-  List<ProductModel> filteringCartProducts(HomeProvider provider) {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser == null) {
-      return [];
-    }
-    final user = currentUser.email ?? currentUser.phoneNumber;
-
-    List<ProductModel> cartProducts = provider.allProduct
-        .where((product) => provider.cartList.contains(product.id))
-        .toList();
-
-    return cartProducts;
+List<ProductModel> filteringCartProducts(HomeProvider provider) {
+  final currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) {
+    return [];
   }
+  final user = currentUser.email ?? currentUser.phoneNumber;
+
+  List<ProductModel> cartProducts = provider.allProduct
+      .where((product) => provider.cartList.contains(product.id))
+      .toList();
+
+  return cartProducts;
 }

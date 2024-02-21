@@ -1,4 +1,3 @@
-import 'package:ecommerce/view/screens/home_screen.dart';
 import 'package:ecommerce/view/screens/auth/login_screen.dart';
 import 'package:ecommerce/view/widgets/bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';

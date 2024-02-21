@@ -1,9 +1,10 @@
-import 'package:ecommerce/service/auth_services.dart';
+import 'package:ecommerce/controller/auth_provider.dart';
 import 'package:ecommerce/view/screens/auth/login_screen.dart';
 import 'package:ecommerce/view/widgets/login/phone_field.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PhoneLoginScreen extends StatelessWidget {
   PhoneLoginScreen({super.key});
@@ -12,28 +13,11 @@ class PhoneLoginScreen extends StatelessWidget {
   final TextEditingController namecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController otpcontroller = TextEditingController();
-  final FirebaseAuthServices service = FirebaseAuthServices();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
-      body:
-          // NotificationListener<ScrollNotification>(
-          //   onNotification: (notification) {
-          //     if (notification is ScrollUpdateNotification) {
-          //       final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-          //       if (bottomInset > 0) {
-          //         Scrollable.ensureVisible(
-          //           notification.context!,
-          //           alignmentPolicy: ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
-          //         );
-          //       }
-          //     }
-          //     return true;
-          //   },
-          //child:
-          Stack(
+      body: Stack(
         children: [
           SizedBox(
             height: double.infinity,
@@ -139,8 +123,11 @@ class PhoneLoginScreen extends StatelessWidget {
                       onTap: () {
                         String countrycode = "+91";
                         String phonenumber = countrycode + phonecontroller.text;
-                        service.signInwithPhone(phonenumber, context,
-                            namecontroller.text, emailcontroller.text);
+                        // service.signInwithPhone(phonenumber, context,
+                        //     namecontroller.text, emailcontroller.text);
+                        Provider.of<AuthProviders>(context, listen: false)
+                            .signInWithPhone(phonenumber, context,
+                                namecontroller.text, emailcontroller.text);
                       },
                       child: Container(
                         width: 180,

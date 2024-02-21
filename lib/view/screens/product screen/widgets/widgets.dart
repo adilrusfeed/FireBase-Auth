@@ -8,7 +8,7 @@ class ProductWidgets {
     return showModalBottomSheet(
       context: context,
       builder: (context) => Container(
-        height: 250,
+        height: 200,
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(50))),
         child: Padding(
@@ -19,7 +19,7 @@ class ProductWidgets {
               Column(
                 children: [
                   const Icon(
-                    Icons.camera,
+                    Icons.camera_alt_sharp,
                     size: 60,
                   ),
                   ElevatedButton(
